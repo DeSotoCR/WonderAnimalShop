@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .login-form,
+        .register-form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form h2,
+        .register-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .login-form input,
+        .register-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-form button,
+        .register-form button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .message {
+            text-align: center;
+        }
+
+        .message a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .message a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+<body>
+<div class="container">
+    <!-- Mensaje de éxito -->
+    <div class="alert" th:if="${mensajeExito}">
+        <p th:text="${mensajeExito}"></p>
+    </div>
+
+    <form class="register-form" id="registerForm" action="/registro" method="POST">
+        <h2>Registrarse</h2>
+        <input type="text" name="nombreUsuario" placeholder="Nombre de usuario" required>
+        <input type="text" name="correo" placeholder="Direcion de Correo" required>
+        <input type="password" name="contraseña" id="password" placeholder="Contraseña" required>
+        <input type="password" name="confirmarContraseña" id="confirm-password" placeholder="Confirmar Contraseña"
+               required>
+        <button type="submit">Registrarse</button>
+        <p class="message">¿Ya tienes una cuenta? <a href="inicioSesion.html">Iniciar Sesión</a></p>
+    </form>
+</div>
+</body>
+</html>

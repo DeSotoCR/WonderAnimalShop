@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Wonder Animal Shop</title>
+        <meta charset="UTF-8">
+        <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <style>
+                    figure {
+                        text-align: center;
+                    }
+                </style>
+                <figure>
+                    <img src="imagenes/logo.png" alt=""/>
+                </figure>
+                <h1 style="text-align: center; background-color: #f7e9c5; color:white">Perfil</h1>
+            </nav>
+            <hr>
+            <header class="header">
+                <nav class="nav">
+                    <a href="index_repaldo.html" class="logo nav-link">
+                        <img src="imagenes/logo.png" alt="Logo"/>
+                        Wonder Animal Shop</a>
+                    <ul class="nav-menu">
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="index.html">&LeftTriangleBar;</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="informacion.html">&RightTriangleBar;</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="Registrar.html">Registrarse</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="inicioSesion.html">Login</a></li>
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="perfil.html">Perfil</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <aside>
+                <h2 style="text-align: center">Nuestra página te ofrecerá todo lo que necesites saber para conocer y querer aún más a tus favoritos</h2>
+                <p style="text-align: center"> ¡Haz clic y sumérgete en un oasis de bienestar para tus adorables compañeros!</p>
+            </aside>
+            <section>
+                <nav class="nav">
+                    <a href="index_repaldo.html" class="logo nav-link"></a>
+                    <ul class="nav-menu">
+                        <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="perfil.html">Perfil</a></li>
+                    </ul>
+                </nav>
+                <h2>Propósito</h2>
+                <p>
+                    Creamos esta página con carisma y amor por las mascotas, con el propósito de ofrecerte toda la información y productos que necesitas para cuidar, mimar y celebrar a tus adorables compañeros. ¡Descubre un rincón lleno de afecto para tus peludos amigos!"
+                </p>
+                <article>
+                    <h2>Todo lo que tienes que saber</h2>
+                    <figure>
+                        <img src="https://estaticos-cdn.prensaiberica.es/clip/05d20bb5-f64d-4cbe-a607-149bed3d7f7f_16-9-aspect-ratio_default_0.jpg" alt="Imagen Wonder Animal Shop" height="250"/>
+                        <figcaption>Imagen Wonder Animal Shop</figcaption>
+                    </figure>
+                   <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="fas fa-plus"></i> Datos de Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+                    <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{usuario.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="Dureza madera">[[#{usuario.durezaMadera}]]</label>
+                                    <input type="text" class="form-control" name="Dureza madera" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Tipo Flor">[[#{usuario.tipoFlor}]]</label>
+                                    <input type="text" class="form-control" name="Tipo Flor" required="true"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+                    <section th:fragment="editarUsuario">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/usuario/guardar}" 
+                          th:object="${usuario}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="id" th:field="*{id}"/>
+                        <section th:replace="~{usuario/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Actualizar</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="Correo">Correo</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="Correo" th:field="*{correo}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Contrasena">Contraseña]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="Contrasena" th:field="*{contrasena}"
+                                                           required="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div> 
+                    </form>
+                </div>
+                </div>
+        </section>
+                        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/usuario/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/usuario/eliminar/}+${usuario.id}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+                </article>
+            </section>
+    </body>
+</html>
+
